@@ -1,14 +1,18 @@
 import itertools
 
-from lorem import get_paragraph
+from lorem import get_paragraph, get_sentence
 import os
 import random
 
 def random_combination_ingredients(ilosci, miary, produkty):
-    ilosc = random.choice(ilosci)
-    miara = random.choice(miary)
-    produkt = random.choice(produkty)
-    return f"{ilosc} {miara} {produkt} \n"
+    ingredients_string = ''
+    for x in range(random.randint(4, 10)):
+        ilosc = random.choice(ilosci)
+        miara = random.choice(miary)
+        produkt = random.choice(produkty)
+        ingredients_string += f"{ilosc} {miara} {produkt}, "
+    ingredients_string += "\n"
+    return ingredients_string
 
 def random_combination_tags(tags):
     s = []
@@ -29,20 +33,42 @@ produkty = "mąka jajka masło olej cukier sól pieprz mleko śmietana ser twar�
 # print("Tags:")
 # for i in range(100):
 #     print("{}%".format(i))
-#     for j in range(1000):
+#     for j in range(10):
 #         tagsFile.write(random_combination_tags(tags))
 # tagsFile.close()
 #
-# ingredients = open("ingredients.txt", "w")
-# print("Ingredients:")
-# for i in range(100):
-#     print("{}%".format(i))
-#     for j in range(1000):
-#         ingredients.write(random_combination_ingredients(ilosci, miary, produkty))
-# ingredients.close()
-
-content = open("content.txt", "w")
+ingredients = open("ingredients.txt", "w")
+print("Ingredients:")
 for i in range(100):
     print("{}%".format(i))
-    content.write(get_paragraph(count=1000, comma=(0, 4), word_range=(10, 20), sentence_range=(20, 25), sep=os.linesep).replace("\n\n", "\n"))
-content.close()
+    for j in range(10):
+        ingredients.write(random_combination_ingredients(ilosci, miary, produkty))
+ingredients.close()
+
+# content = open("content.txt", "w")
+# for i in range(100):
+#     print("{}%".format(i))
+#     content.write(get_paragraph(count=10, comma=(0, 4), word_range=(10, 20), sentence_range=(20, 25), sep=os.linesep).replace("\n", ""))
+#     content.write("\n")
+# content.close()
+#
+# title = open("title.txt", 'w')
+# for i in range (100):
+#     print("{}%".format(i))
+#     title.write(get_sentence(count=10, comma=(0,2), word_range=(3, 5), sep=os.linesep).replace("\n", ""))
+#     title.write("\n")
+# title.close()
+#
+# comment = open("comment.txt", "w")
+# for i in range(100):
+#     print("{}%".format(i))
+#     comment.write(get_paragraph(count=50, comma=(0, 2), word_range=(4, 10), sentence_range=(1, 5), sep=os.linesep).replace("\n", ""))
+#     comment.write("\n")
+# comment.close()
+
+description = open("description.txt", "w")
+for i in range(100):
+    print("{}%".format(i))
+    description.write(get_paragraph(count=1, comma=(0, 2), word_range=(6, 12), sentence_range=(3, 6), sep=os.linesep).replace("\n", ""))
+    description.write("\n")
+description.close()
